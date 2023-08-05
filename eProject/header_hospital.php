@@ -61,19 +61,21 @@ if (!isset($_SESSION['Hospital'])) {
                     </div>
                     <div class="ms-3">
                         <?php
-                         $user = $_SESSION['Hospital'];
-                         foreach ($user as $value) {
-                             $hospitalID = $value['hospitalID'];
-                             // echo '<script>alert("' . $hospitalID . '")</script>'
-                         ?>
-                           <div class="col-sm-10">
-                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>" class="form-control">
-                                    </div>
-                                    <?php
-                        $query = $pdo->prepare("Select hospitalName from hospital_login where hospitalID = :getHospitalID");
+                        $user = $_SESSION['Hospital'];
+                        foreach ($user as $value) {
+                            $hospitalID = $value['hospitalID'];
+                            // echo '<script>alert("' . $hospitalID . '")</script>'
                         ?>
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                            <?php
+                            $query = $pdo->prepare("Select hospitalName from hospital_login where hospitalID = :getHospitalID");
+                            $query->bindParam("getHospitalID", $hospitalID);
+                            $query->execute();
+                            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($result as $row) {
+                            ?>
+                                <h6 class="mb-0"><?php echo ucfirst($row['hospitalName']) ?></h6>
+
+                                <span>Hospital</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -169,7 +171,11 @@ if (!isset($_SESSION['Hospital'])) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex"><?php echo ucfirst($row['hospitalName']) ?></span>
+                    <?php
+                            }
+                        }
+                    ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
