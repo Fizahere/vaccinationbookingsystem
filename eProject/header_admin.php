@@ -2,7 +2,8 @@
 include("php/query.php");
 if (!isset($_SESSION['Admin'])) {
     redirectWindow('signin.php');
-};
+}
+;
 ?>
 
 <!DOCTYPE html>
@@ -41,35 +42,26 @@ if (!isset($_SESSION['Admin'])) {
     h4 {
         color: #6C7293;
     }
+
     /* Replace "fa-eye" with the actual class name for the eye icon you are using (e.g., Font Awesome) */
-.fa-eye {
-    cursor: pointer;
-    position: absolute;
-    top: 62%;
-    right: 25px;
-    transform: translateY(-50%);
-    z-index: 2;
-}
+    .fa-eye {
+        cursor: pointer;
+        position: absolute;
+        top: 62%;
+        right: 25px;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
 
-/* Optional: To style the eye icon when the password is visible */
-.fa-eye.visible {
-    color: #007bff; /* Change this color to your preferred color */
-}
-
+    /* Optional: To style the eye icon when the password is visible */
+    .fa-eye.visible {
+        color: #007bff;
+        /* Change this color to your preferred color */
+    }
 </style>
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
@@ -77,13 +69,19 @@ if (!isset($_SESSION['Admin'])) {
                     <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
-                   
+
                     <div class="ms-3">
                         <?php
                         $user = $_SESSION['Admin'];
-                        foreach($user as $value){
+                        foreach ($user as $value) {
                             ?>
+<<<<<<< HEAD
+                            <h6 class="mb-0">
+                                <?php echo $value['adminName'] ?>
+                            </h6>
+=======
                         <h6 class="mb-0"><?php echo  ucfirst( $value ['adminName']) ?></h6>
+>>>>>>> 59c13981cfd453a8e401712c403d5565cb9dd50b
                             <?php
                         }
                         ?>
@@ -97,10 +95,10 @@ if (!isset($_SESSION['Admin'])) {
                         Data</a>
                     <a href="vaccineReport.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Vaccine
                         Details</a>
-                        <a href="parentRequest.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Parent</a>
-                        <a href="childDetails.php" class="nav-item nav-link"><i class="fa fa-child me-2"></i>Child
+                    <a href="parentRequest.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Parent</a>
+                    <a href="childDetails.php" class="nav-item nav-link"><i class="fa fa-child me-2"></i>Child
                         Details</a>
-                        <a href="requestPage.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Notifications</a>
+                    <a href="requestPage.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Notifications</a>
 
                 </div>
             </nav>
@@ -112,7 +110,7 @@ if (!isset($_SESSION['Admin'])) {
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <a href="index.php" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -124,95 +122,100 @@ if (!isset($_SESSION['Admin'])) {
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <?php 
-                         $queryParentData = $pdo->query("SELECT * from parent_login where parentStatus = 'pending' LIMIT 2");
-                         $resultParentData = $queryParentData->fetchAll(PDO::FETCH_ASSOC);
-                         $queryHospitalData = $pdo->query("SELECT * from hospital_login where hospitalStatus = 'pending'  LIMIT 2");
-                         $resultHospitalData = $queryHospitalData->fetchAll(PDO::FETCH_ASSOC);
-                         $queryAppointment = $pdo->query("SELECT * from children_details where appointmentStatus = 'pending'  LIMIT 1");
-                         $resultAppointment = $queryAppointment->fetchAll(PDO::FETCH_ASSOC);
-                         if(empty($resultParentData) && empty($resultHospitalData)&& empty($resultAppointment) ){
-                          ?>
-                           <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">
-                        <i class="fa fa-bell me-lg-2">
-                        </i>
-                        <span class="d-none d-lg-inline-flex">Notifications</span>
-                       
-                    </a>
-                        
-                        <?php 
-                    }else{
-                        
-                        ?>
-                          <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2 position-relative">
-                            <div class="bg-success rounded-circle border border-2 border-white position-absolute top-0 start-0 p-1"></div>
-                            </i>
-                            <span class="d-none d-lg-inline-flex">Notifications</span>
-                           
-                        </a>
-                       
-                     <?php
-                     
-                    }?>
+                        <?php
+                        $queryParentData = $pdo->query("SELECT * from parent_login where parentStatus = 'pending' LIMIT 2");
+                        $resultParentData = $queryParentData->fetchAll(PDO::FETCH_ASSOC);
+                        $queryHospitalData = $pdo->query("SELECT * from hospital_login where hospitalStatus = 'pending'  LIMIT 2");
+                        $resultHospitalData = $queryHospitalData->fetchAll(PDO::FETCH_ASSOC);
+                        $queryAppointment = $pdo->query("SELECT * from children_details where appointmentStatus = 'pending'  LIMIT 1");
+                        $resultAppointment = $queryAppointment->fetchAll(PDO::FETCH_ASSOC);
+                        if (empty($resultParentData) && empty($resultHospitalData) && empty($resultAppointment)) {
+                            ?>
+                            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">
+                                <i class="fa fa-bell me-lg-2">
+                                </i>
+                                <span class="d-none d-lg-inline-flex">Notifications</span>
+
+                            </a>
+
+                            <?php
+                        } else {
+
+                            ?>
+                            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">
+                                <i class="fa fa-bell me-lg-2 position-relative">
+                                    <div
+                                        class="bg-success rounded-circle border border-2 border-white position-absolute top-0 start-0 p-1">
+                                    </div>
+                                </i>
+                                <span class="d-none d-lg-inline-flex">Notifications</span>
+
+                            </a>
+
+                            <?php
+
+                        } ?>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
                             <?php
-                            
-                    
-                             foreach($resultParentData as $row1){
-                       ?>
-                            <a href="parentRequest.php" class="dropdown-item link-secondary">
 
-                                        <h6 class="fw-normal mb-0">
-                                            <?php echo ucfirst($row1['parentName'])?> has requested for registeration
-                                        </h6>
-                            </a>
-                            <hr class="dropdown-divider">
+
+                            foreach ($resultParentData as $row1) {
+                                ?>
+                                <a href="parentRequest.php" class="dropdown-item link-secondary">
+
+                                    <h6 class="fw-normal mb-0">
+                                        <?php echo ucfirst($row1['parentName']) ?> has requested for registeration
+                                    </h6>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <?php
+                            }
+                            ?>
                             <?php
-                             }
-?>
+
+
+                            foreach ($resultAppointment as $row) {
+                                ?>
+                                <a href="childDetails.php" class="dropdown-item link-secondary">
+
+                                    <h6 class="fw-normal mb-0">
+                                        Appointment request for '
+                                        <?php echo ucfirst($row['childName']) ?>'
+                                    </h6>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <?php
+                            }
+
+                            foreach ($resultHospitalData as $row2) {
+                                ?>
+                                <a href="hospitalData.php" class="dropdown-item link-secondary">
+
+
+                                    <h6 class="fw-normal mb-0">
+                                        <?php echo ucfirst($row2['hospitalName']) ?> hospital has requested for
+                                        registeration
+                                    </h6>
+
+
+                                </a>
+                                <hr class="dropdown-divider">
+                                <?php
+                            }
+                            ?>
                             <?php
-                            
-                    
-                             foreach($resultAppointment as $row){
-                       ?>
-                            <a href="childDetails.php" class="dropdown-item link-secondary">
-
-                                        <h6 class="fw-normal mb-0">
-                                            Appointment request for '<?php echo ucfirst($row['childName'])?>'
-                                        </h6>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <?php
-                             }                         
-                    
-                             foreach($resultHospitalData as $row2){
-                       ?>
-                            <a href="hospitalData.php" class="dropdown-item link-secondary">
-
-
-                                <h6 class="fw-normal mb-0">
-                                    <?php echo ucfirst($row2['hospitalName'])?> hospital has requested for registeration
-                                </h6>
-
-
-                            </a>
-                            <hr class="dropdown-divider">
-                            <?php
-                             }
-?>
-                            <?php
-    if (empty($resultHospitalData) && empty($resultParentData)  && empty($resultAppointment) ) {
-        ?>
-        <a class="dropdown-item text-center link-secondary">No notification</a>
-    <?php
-    } else {
-        ?>
-        <a href="requestPage.php" class="dropdown-item text-center link-secondary">See all notifications</a>
-    <?php
-    }
-    ?>
+                            if (empty($resultHospitalData) && empty($resultParentData) && empty($resultAppointment)) {
+                                ?>
+                                <a class="dropdown-item text-center link-secondary">No notification</a>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="requestPage.php" class="dropdown-item text-center link-secondary">See all
+                                    notifications</a>
+                                <?php
+                            }
+                            ?>
                             <hr class="dropdown-divider">
 
                         </div>
@@ -220,14 +223,24 @@ if (!isset($_SESSION['Admin'])) {
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+<<<<<<< HEAD
+=======
                         <?php
                         $user = $_SESSION['Admin'];
                         foreach($user as $value){
                             ?>
                             <span class="d-none d-lg-inline-flex"><?php echo  ucfirst($value ['adminName'] )?></span>
+>>>>>>> 59c13981cfd453a8e401712c403d5565cb9dd50b
                             <?php
-                        }
-                        ?>
+                            $user = $_SESSION['Admin'];
+                            foreach ($user as $value) {
+                                ?>
+                                <span class="d-none d-lg-inline-flex">
+                                    <?php echo $value['adminName'] ?>
+                                </span>
+                                <?php
+                            }
+                            ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <!-- <a href="#" class="dropdown-item">My Profile</a> -->
