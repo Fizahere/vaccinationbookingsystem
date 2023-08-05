@@ -21,7 +21,7 @@ if (!isset($_SESSION['Hospital'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -52,7 +52,7 @@ if (!isset($_SESSION['Hospital'])) {
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.php" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Hospital</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -60,27 +60,30 @@ if (!isset($_SESSION['Hospital'])) {
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
+                        <?php
+                         $user = $_SESSION['Hospital'];
+                         foreach ($user as $value) {
+                             $hospitalID = $value['hospitalID'];
+                             // echo '<script>alert("' . $hospitalID . '")</script>'
+                         ?>
+                           <div class="col-sm-10">
+                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>" class="form-control">
+                                    </div>
+                                    <?php
+                        $query = $pdo->prepare("Select hospitalName from hospital_login where hospitalID = :getHospitalID");
+                        ?>
                         <h6 class="mb-0">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
-                        </div>
-                    </div>
-                    <a href="form.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                            <a href="signin.php" class="dropdown-item">Sign In</a>
-                            <a href="signup.php" class="dropdown-item">Sign Up</a>
-                            <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
-               
-                        </div>
+                    <a href="vaccineData.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Vaccines</a>
+                    <a href="patients.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Patients</a>
+                    <a href="signin.php" class="dropdown-item">Sign In</a>
+                    <a href="signup.php" class="dropdown-item">Sign Up</a>
+                    <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
+
+                </div>
             </nav>
         </div>
         <!-- Sidebar End -->

@@ -1,9 +1,8 @@
 <?php
-include_once('header.php');
+include_once('header_hospital.php');
 if (!isset($_SESSION['Hospital'])) {
     redirectWindow('signin.php');
 }
-;
 ?>
 <div class="container pt-4">
     <div class="bg-light rounded p-4">
@@ -38,22 +37,21 @@ if (!isset($_SESSION['Hospital'])) {
                                 $user = $_SESSION['Hospital'];
                                 foreach ($user as $value) {
                                     $hospitalID = $value['hospitalID'];
-                                    // echo '<script>alert("'.$hospitalID.'")</script>'
-                                    ?>
+                                    // echo '<script>alert("' . $hospitalID . '")</script>'
+                                ?>
                                     <div class="col-sm-10">
-                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>"
-                                            class="form-control">
+                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>" class="form-control">
                                     </div>
                                     <?php
 
                                     $query = $pdo->prepare("SELECT * FROM children_details where hospitalID = :getHospitalID AND appointmentStatus = 'approved'");
-                                    $query->bindParam('getHospitalID',$hospitalID,);
+                                    $query->bindParam('getHospitalID', $hospitalID,);
                                     $query->execute();
                                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                                     // print_r($result);   
                                     $count = 1;
                                     foreach ($result as $row) {
-                                        ?>
+                                    ?>
                                         <tr class="tr-row">
                                             <th scope="row">
                                                 <?php echo $count ?>
@@ -84,11 +82,10 @@ if (!isset($_SESSION['Hospital'])) {
                                                 <?php echo $row['appointmentStatus'] ?>
                                             </td>
                                         </tr>
-                                        <?php
+                                <?php
                                         $count++;
                                     }
-                                }
-                                ;
+                                };
 
                                 ?>
                             </tbody>
@@ -119,4 +116,4 @@ if (!isset($_SESSION['Hospital'])) {
 </script>
 <?php
 include('footer.php')
-    ?>
+?>
