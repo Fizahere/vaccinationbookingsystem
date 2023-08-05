@@ -83,7 +83,7 @@ if (!isset($_SESSION['Admin'])) {
                         $user = $_SESSION['Admin'];
                         foreach($user as $value){
                             ?>
-                        <h6 class="mb-0"><?php echo $value['adminName'] ?></h6>
+                        <h6 class="mb-0"><?php echo  ucfirst( $value ['adminName']) ?></h6>
                             <?php
                         }
                         ?>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['Admin'])) {
                         $user = $_SESSION['Admin'];
                         foreach($user as $value){
                             ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo $value['adminName'] ?></span>
+                            <span class="d-none d-lg-inline-flex"><?php echo  ucfirst($value ['adminName'] )?></span>
                             <?php
                         }
                         ?>
