@@ -49,7 +49,7 @@ class Auth
 
     function childFormSubmit($childName,$Gender,$dateOfBirth,$hospital,$vaccine,$appointment,$parentID,$phone,$pdo){
         $query = $pdo->prepare('insert into children_details 
-    (childName,childGender,childAge,hospitalID,vaccineID,vaccineDate,parentID,contact)
+    (childName,childGender,childAge,hospitalID,vaccineID,vaccinationDate,parentID,contact)
      values (:name,:gender,:age,:hospital,:vaccine,:date,:parentID,:contact)
     ');
     $query->bindParam(':name', $childName);

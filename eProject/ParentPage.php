@@ -76,50 +76,48 @@ if (!isset($_SESSION['Parent'])) {
                 <div id="result2" class="mb-3"></div>
             </div>
         </div>
-       <div class="row">
-    <div class="col-md-6">
-        <div class="form-floating mb-3">
-            <select class="form-select" id="floatingSelect" name="hospitalID">
-                <option selected>Choose Hospital</option>
-                <?php
-                $query = $pdo->query('SELECT * FROM hospital_login');
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($result as $value) {
-                    ?>
-                    <option value="<?php echo $value['hospitalID'] ?>"><?php echo $value['hospitalName'] ?></option>
-                    <?php
-                }
-                ?>
-            </select>
-            <label for="floatingSelect">Select hospital</label>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-floating mb-3">
-            <select class="form-select" id="floatingSelect" name="vaccineID">
-                <option selected>Choose Vaccine</option>
-                <?php
-                if (isset($_POST['hospitalID'])) {
-                    $hospitalID = $_POST['hospitalID'];
-                    echo '<script>alert("'.$hospitalID.'")</script>'
-                    // $query = $pdo->prepare('SELECT * FROM vaccine_details where hospitalID = :ID');
-                    // $query->bindParam(':ID', $hospitalID);
-                    // $query->execute();
-                    // $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" name="hospitalID">
+                        <option selected>Choose Hospital</option>
+                        <?php
+                        $query = $pdo->query('SELECT * FROM hospital_login');
+                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $value) {
+                            ?>
+                            <option value="<?php echo $value['hospitalID'] ?>"><?php echo $value['hospitalName'] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <label for="floatingSelect">Select hospital</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" name="vaccineID">
+                        <option selected>Choose Vaccine</option>
+                        <?php
 
-                    // foreach ($result as $value) {
-                    //     ?>
-                    //     <option value="<?php echo $value['vaccineID'] ?>"><?php echo $value['vaccineName'] ?></option>
-                    //     <?php
-                    // }
-                }
-                ?>
 
-            </select>
-            <label for="floatingSelect">Select vaccine</label>
+
+                        $query = $pdo->query('SELECT * FROM vaccine_details');
+                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($result as $value) {
+                            ?>
+                            <option value="<?php echo $value['vaccineID'] ?>"><?php echo $value['vaccineName'] ?></option>
+                            <?php
+                        }
+
+                        ?>
+
+                    </select>
+                    <label for="floatingSelect">Select vaccine</label>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
