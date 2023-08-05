@@ -25,7 +25,6 @@ if (isset($_POST['update_hospital_info'])) {
     echo "<script>alert('hospital updated succesfully')</script>";
     redirectWindow('hospitalData.php');
     exit;
-
 }
 // ---------------------------------------------------------------------------|
 //                                                                            |                 
@@ -56,7 +55,6 @@ if (isset($_POST['insert-hospital-btn'])) {
     echo "<script>alert('hospital added succesfully')</script>";
     redirectWindow('hospitalData.php');
     exit;
-
 }
 
 
@@ -86,7 +84,6 @@ if (isset($_POST['delete_hospital_info'])) {
     echo "<script>alert('hospital deleted')</script>";
     redirectWindow('hospitalData.php');
     exit;
-
 }
 
 // ---------------------------------------------------------------------------|
@@ -408,7 +405,6 @@ if (isset($_POST['submit'])) {
     $Gender = $_POST["gender"];
 
     $user = $authModel->childFormSubmit($childName, $Gender, $dateOfBirth, $hospital, $vaccine, $appointment, $parentID, $phone, $pdo);
-
 }
 
 ?>
@@ -429,9 +425,8 @@ if (isset($_POST['update_vaccine_info'])) {
     $query->bindParam('_id', $vaccineId);
     $query->execute();
     echo "<script>alert('Vaccine updated succesfully')</script>";
-    redirectWindow('vaccinationData.php');
+    redirectWindow('vaccineData.php');
     exit;
-
 }
 
 if (isset($_POST['insert-vaccine-btn'])) {
@@ -443,14 +438,11 @@ if (isset($_POST['insert-vaccine-btn'])) {
     $query = $pdo->prepare("INSERT into vaccine_details(vaccineName,vaccineStock) values(:vaccine_name,:vaccine_stock)");
     $query->bindParam('vaccine_name', $vaccine_name);
     $query->bindParam('vaccine_stock', $vaccine_stock);
-    // $query -> bindParam('hospital_location', $hospital_location);
-    // $query -> bindParam('hospital_password', $hospital_password);
     $query->execute();
 
     echo "<script>alert('Vaccine added succesfully')</script>";
-    redirectWindow('vaccinationData.php');
+    redirectWindow('vaccineData.php');
     exit;
-
 }
 
 if (isset($_POST['delete_vaccine_info'])) {
@@ -459,8 +451,6 @@ if (isset($_POST['delete_vaccine_info'])) {
     $query->bindParam('id', $vaccine_id);
     $query->execute();
     echo "<script>alert('Vaccine deleted')</script>";
-    redirectWindow('vaccinationData.php');
+    redirectWindow('vaccineData.php');
     exit;
-
-}
-;
+};
