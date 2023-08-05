@@ -61,19 +61,21 @@ if (!isset($_SESSION['Hospital'])) {
                     </div>
                     <div class="ms-3">
                         <?php
-                         $user = $_SESSION['Hospital'];
-                         foreach ($user as $value) {
-                             $hospitalID = $value['hospitalID'];
-                             // echo '<script>alert("' . $hospitalID . '")</script>'
-                         ?>
-                           <div class="col-sm-10">
-                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>" class="form-control">
-                                    </div>
-                                    <?php
-                        $query = $pdo->prepare("Select hospitalName from hospital_login where hospitalID = :getHospitalID");
+                        $user = $_SESSION['Hospital'];
+                        foreach ($user as $value) {
+                            $hospitalID = $value['hospitalID'];
+                            // echo '<script>alert("' . $hospitalID . '")</script>'
                         ?>
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                            <?php
+                            $query = $pdo->prepare("Select hospitalName from hospital_login where hospitalID = :getHospitalID");
+                            $query->bindParam("getHospitalID", $hospitalID);
+                            $query->execute();
+                            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($result as $row) {
+                            ?>
+                                <h6 class="mb-0"><?php echo ucfirst($row['hospitalName']) ?></h6>
+
+                                <span>Hospital</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -145,23 +147,30 @@ if (!isset($_SESSION['Hospital'])) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                            <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
+                            <?php
+                                $query = $pdo->prepare("SELECT *
+                        FROM children_details
+                        INNER JOIN parent_login ON children_details.parentID = parent_login.parentID
+                        INNER JOIN vaccine_details ON children_details.vaccineID = vaccine_details.vaccineID
+                        INNER JOIN hospital_login ON children_details.hospitalID  = hospital_login.hospitalID
+                         where appointmentStatus = 'approved'");
+                                // $query->bindParam("getHospitalID", $hospitalID);
+                                $query->execute();
+                                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                                // echo '<script>alert("' . $hospitalID . '")</script>';
+
+                                foreach ($result as $row) {
+                            ?>
+                                <a href="#" class="dropdown-item">
+                                    <h6 class="fw-normal mb-0"> <?php echo ucfirst($row['childName']) ?> has an appointment of' <?php echo ucfirst($row['vaccineName']) ?>' on <?php echo $row['vaccinationDate'] ?></h6>
+                                    <small>15 minutes ago</small>
+                                </a>
+                            <?php
+                                };
+                            ?>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item text-center">See all notifications</a>
                         </div>
@@ -169,7 +178,11 @@ if (!isset($_SESSION['Hospital'])) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex"><?php echo ucfirst($row['hospitalName']) ?></span>
+                    <?php
+                            }
+                        }
+                    ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
