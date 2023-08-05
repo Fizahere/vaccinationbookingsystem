@@ -1,5 +1,5 @@
 <?php
-include_once('header.php');
+include_once('header_hospital.php');
 if (!isset($_SESSION['Hospital'])) {
     redirectWindow('signin.php');
 }

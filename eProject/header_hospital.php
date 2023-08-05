@@ -1,9 +1,8 @@
 <?php
 include('php/query.php');
-if (!isset($_SESSION['Parent'])) {
+if (!isset($_SESSION['Hospital'])) {
     redirectWindow('signin.php');
 }
-;
 ?>
 <!DOCTYPE html>
 <html lang="en">

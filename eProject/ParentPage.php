@@ -1,5 +1,5 @@
 <?php
-include_once('header_admin.php');
+include_once('header.php');
 if (!isset($_SESSION['Parent'])) {
     redirectWindow('signin.php');
 }
