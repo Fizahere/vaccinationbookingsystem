@@ -1,5 +1,9 @@
 <?php
-include_once('header.php')
+include_once('header.php');
+if (!isset($_SESSION['Hospital'])) {
+    redirectWindow('signin.php');
+}
+;
 ?>
 <div class="container pt-4">
     <div class="bg-light rounded p-4">

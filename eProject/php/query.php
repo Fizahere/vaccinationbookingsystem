@@ -343,7 +343,7 @@ if (isset($_POST['signin'])) {
         $user = $authModel->findUserWithEmailHospital($email, $pdo);
         if (password_verify($password, $user[0]['hospitalPassword'])) {
             $_SESSION['Hospital'] = $user;
-            redirectWindow('ParentPage.php');
+            redirectWindow('vaccineData.php');
         } else {
             redirectWindow('signin.php?error=invalid credentials');
         }
@@ -390,7 +390,7 @@ if (isset($_POST['signup2'])) {
 
     if ($user) {
         $_SESSION['Hospital'] = $user;
-        redirectWindow('HospitalPage.php');
+        redirectWindow('signin.php');
     } else {
         redirectWindow("signupForHospital.php?error=Something went wrong");
     }
