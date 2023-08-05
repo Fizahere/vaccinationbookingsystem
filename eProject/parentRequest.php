@@ -1,6 +1,6 @@
 <?php
 include_once('header_admin.php')
-?>
+    ?>
 <div class="container pt-4">
     <div class="bg-light rounded p-4">
         <div class="row">
@@ -27,45 +27,48 @@ include_once('header_admin.php')
                             </thead>
                             <tbody>
                                 <?php
-                        $query = $pdo->query("SELECT * from parent_login");
-                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-               
-                        foreach($result as $row){
-                        ?>
-                                <tr class="tr-row">
-                                    <th scope="row" class="id-column">
-                                        <?php echo $row['parentID'] ?>
-                                    </th>
+                                $query = $pdo->query("SELECT * from parent_login");
+                                $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                                    <td>
-                                        <?php echo $row['parentName'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['parentEmail'] ?>
-                                    </td>
-                                    <td class="d-flex">
-      <?php echo $row['parentStatus'] ?>
-      <div class="mx-auto">
-        <i class="fa fa-ellipsis-v" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"></i>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <form action="" method="post">
-            <input type="hidden" name="statusID" value="<?php echo $row['parentID'] ?>">
-            <button class="dropdown-item" name="parentApprove">Approve</button>
-            <button class="dropdown-item" name="parentReject" >Reject</button>
-          </form>
-        </div>
-      </div>
-    </td>
-                                   
-                                   
+                                foreach ($result as $row) {
+                                    ?>
+                                    <tr class="tr-row">
+                                        <th scope="row" class="id-column">
+                                            <?php echo $row['parentID'] ?>
+                                        </th>
 
-                                </tr>
+                                        <td>
+                                            <?php echo $row['parentName'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['parentEmail'] ?>
+                                        </td>
+                                        <td class="d-flex">
+                                            <?php echo $row['parentStatus'] ?>
+                                            <div class="mx-auto">
+                                                <i class="fa fa-ellipsis-v" data-bs-toggle="dropdown" aria-expanded="false"
+                                                    id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"></i>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <form action="" method="post">
+                                                        <input type="hidden" name="statusID"
+                                                            value="<?php echo $row['parentID'] ?>">
+                                                        <button class="dropdown-item" name="parentApprove">Approve</button>
+                                                        <button class="dropdown-item" name="parentReject">Reject</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
 
 
-                                <?php
-                        };
 
-                                       ?>
+                                    </tr>
+
+
+                                    <?php
+                                }
+                                ;
+
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -78,4 +81,4 @@ include_once('header_admin.php')
 <script src="js/script.js"></script>
 <?php
 include('footer.php')
-?>
+    ?>

@@ -21,7 +21,7 @@ if (isset($_POST['update_hospital_info'])) {
     $email = $_POST['model-email'];
     $location = $_POST['model-location'];
     $id = $_POST['model-id'];
-    $authModel->updateHospitalLoginInfo($name, $email, $id , $location, $pdo);
+    $authModel->updateHospitalLoginInfo($name, $email, $id, $location, $pdo);
     echo "<script>alert('hospital updated succesfully')</script>";
     redirectWindow('hospitalData.php');
     exit;
@@ -51,7 +51,7 @@ if (isset($_POST['insert-hospital-btn'])) {
     $hospital_location = $_POST['insert-hospital-location'];
     $hospital_password = $_POST['insert-hospital-password'];
 
-   $authModel->insertHospitalFromAdmin($hospital_name,$hospital_email,$hospital_location,$hospital_password,$pdo);
+    $authModel->insertHospitalFromAdmin($hospital_name, $hospital_email, $hospital_location, $hospital_password, $pdo);
 
     echo "<script>alert('hospital added succesfully')</script>";
     redirectWindow('hospitalData.php');

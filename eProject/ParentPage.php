@@ -65,9 +65,10 @@ if (!isset($_SESSION['Parent'])) {
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="birthdate">Enter your birthdate:</label>
-
+                <input class="form-control" type="number" name="dob" required>
+                <!-- 
                 <input class="form-control" type="date" name="dob" id="birthdate" required>
-                <div id="result" class="mb-3 mt-2"></div>
+                <div id="result" class="mb-3 mt-2"></div> -->
             </div>
 
             <div class="col-md-6">
@@ -122,6 +123,56 @@ if (!isset($_SESSION['Parent'])) {
 
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div class="container p-5 row">
+        <div class='col-md-6'>
+
+            <h6>Patient Name</h6>
+            <h6>Gender</h6>
+            <h6>Age</h6>
+
+            <h6>vaccination Date</h6>
+            <h6>contact</h6>
+        </div>
+
+        <div class='col-md-6'>
+            <?php
+            $user = $_SESSION['Parent'];
+            foreach ($user as $value) {
+                $parentID = $value['parentID'];
+
+                $query = $pdo->prepare("SELECT * FROM children_details where parentID = :parentID AND appointmentStatus = 'approved'");
+                $query->bindParam('parentID', $parentID, );
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $row) {
+                    ?>
+                    <h6>
+                        <?php echo $row['childName'] ?>
+                    </h6>
+                    <h6>
+                        <?php echo $row['childGender'] ?>
+                    </h6>
+                    <h6>
+                        <?php echo $row['childAge'] ?>
+                    </h6>
+
+                    <h6>
+                        <?php echo $row['vaccinationDate'] ?>
+                    </h6>
+
+                    <h6>
+                        <?php echo $row['contact'] ?>
+                    </h6>
+
+                    <?php
+                }
+            }
+            ;
+
+            ?>
+        </div>
+    </div>
 </div>
 
 <!-- Footer Start -->

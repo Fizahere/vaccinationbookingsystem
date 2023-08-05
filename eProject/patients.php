@@ -1,5 +1,5 @@
 <?php
-include_once('header.php');
+include_once('header_hospital.php');
 if (!isset($_SESSION['Hospital'])) {
     redirectWindow('signin.php');
 }
@@ -47,7 +47,7 @@ if (!isset($_SESSION['Hospital'])) {
                                     <?php
 
                                     $query = $pdo->prepare("SELECT * FROM children_details where hospitalID = :getHospitalID AND appointmentStatus = 'approved'");
-                                    $query->bindParam('getHospitalID',$hospitalID,);
+                                    $query->bindParam('getHospitalID', $hospitalID, );
                                     $query->execute();
                                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                                     // print_r($result);   
