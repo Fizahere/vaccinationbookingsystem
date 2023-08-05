@@ -1,10 +1,30 @@
 <?php
 include('php/query.php');
+// include('functions.php');
+
+
 if (!isset($_SESSION['Parent'])) {
     redirectWindow('signin.php');
-}
-;
-?>
+};
+// Check if 'Parent' session variable is set
+ 
+    $user = $_SESSION['Parent'];
+
+    foreach($user as  $value){
+      $U_ID =   $value['parentID'];
+$query = $pdo->prepare("SELECT * FROM parent_login WHERE parentID = :parentID AND parentStatus = 'approved'");
+$query->bindParam(':parentID',  $U_ID);
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+if (empty($result)) {
+    ECHO "<script>alert('Your approval is pending')
+    location.assign.window('signin.php');
+    </script>";    
+
+}     
+    };
+// ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,6 +86,8 @@ if (!isset($_SESSION['Parent'])) {
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
+                    
+                        <input type="text" value="<?php echo($value['parentID']) ?>">
                     <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
@@ -82,6 +104,8 @@ if (!isset($_SESSION['Parent'])) {
                             <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
                
                         </div>
+
+                       
             </nav>
         </div>
         <!-- Sidebar End -->
