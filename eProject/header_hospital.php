@@ -150,20 +150,27 @@ if (!isset($_SESSION['Hospital'])) {
                             <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
+                            <?php
+                                $query = $pdo->prepare("SELECT *
+                        FROM children_details
+                        INNER JOIN parent_login ON children_details.parentID = parent_login.parentID
+                        INNER JOIN vaccine_details ON children_details.vaccineID = vaccine_details.vaccineID
+                        INNER JOIN hospital_login ON children_details.hospitalID  = hospital_login.hospitalID
+                         where appointmentStatus = 'approved'");
+                                // $query->bindParam("getHospitalID", $hospitalID);
+                                $query->execute();
+                                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                                // echo '<script>alert("' . $hospitalID . '")</script>';
+
+                                foreach ($result as $row) {
+                            ?>
+                                <a href="#" class="dropdown-item">
+                                    <h6 class="fw-normal mb-0"> <?php echo ucfirst($row['childName']) ?> has an appointment of' <?php echo ucfirst($row['vaccineName']) ?>' on <?php echo $row['vaccinationDate'] ?></h6>
+                                    <small>15 minutes ago</small>
+                                </a>
+                            <?php
+                                };
+                            ?>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item text-center">See all notifications</a>
                         </div>
