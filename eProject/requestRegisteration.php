@@ -17,9 +17,9 @@
                             <tbody>
                                 <?php
                         $query = $pdo->query("SELECT * from parent_login where parentStatus = 'pending'");
-                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                        $resultParent = $query->fetchAll(PDO::FETCH_ASSOC);
                
-                        foreach($result as $row){
+                        foreach($resultParent as $row){
                         ?>
                                 <tr class="tr-row">
 
@@ -85,7 +85,7 @@
 
 
                                 <?php
-                        }if(empty($result)){
+                        }if(empty($result) && empty($resultParent) ){
                             ?>
                                 <tr>
 
