@@ -32,7 +32,7 @@ foreach ($user as $value) {
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>Vaccination Booking System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -66,7 +66,11 @@ foreach ($user as $value) {
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.php" class="navbar-brand mx-4 mb-3">
+<<<<<<< HEAD
+                    <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
+=======
                     <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>Vaccination booking system</h6>
+>>>>>>> 0064da51d7ed45722c05fd76da48fa13c0f3d75c
                 </a>
 
                 <div class="d-flex align-items-center ms-4 mb-4">
