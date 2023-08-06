@@ -3,6 +3,10 @@ session_start();
 include_once('models/config.php');
 include_once("models/auth.php");
 ?>
+<!-----------------------------------------------------------------------------------------------
+|   php tag start for queries to update  admin  Information                                      |
+|   [start]                                                                                      |  
+------------------------------------------------------------------------------------------------->
 <?php
 
 if (isset($_POST['update_admin_info'])) {
@@ -19,11 +23,15 @@ if (isset($_POST['update_admin_info'])) {
             echo "<script>
         location.assign('adminProfile.php')
         </script>";
-        }
+        };
      
 
 
 ?>
+<!-----------------------------------------------------------------------------------------------
+|   php tag end for queries to update  admin  Information                                       |
+|   [end]                                                                                       |  
+------------------------------------------------------------------------------------------------->
 
 <!-----------------------------------------------------------------------------------------------
 |   php tag start for queries to update delete and add  hospital information  by admin           |
@@ -519,17 +527,6 @@ if (isset($_POST['edit'])) {
     } else {
         echo "<script>alert('error')</script>";
     }
-
-    // $query = $pdo->prepare("update parent_login set parentName = :name,
-    // parentlEmail = :email ,image = :img where parentID = :id");
-    // $query->bindParam('name', $name);
-    // $query->bindParam('email', $email);
-    // $query->bindParam('img', $image);
-    // $query->bindParam('id', $id);
-    // $query->execute();
-
-    // echo "<script>alert('hello')</script>";
-    // redirectWindow('hospitalData.php');
 }
 if (isset($_POST['h_edit'])) {
     $h_name = $_POST['h_name'];
