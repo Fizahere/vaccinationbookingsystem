@@ -3,6 +3,24 @@ include('php/query.php');
 if (!isset($_SESSION['Hospital'])) {
     redirectWindow('signin.php');
 }
+// Check if 'Parent' session variable is set
+ 
+$user = $_SESSION['Hospital'];
+
+foreach($user as  $value){
+  $U_ID =   $value['hospitalID'];
+$query = $pdo->prepare("SELECT * FROM hospital_login WHERE hospitalID = :hospitalID AND hospitalStatus = 'approved'");
+$query->bindParam(':hospitalID',  $U_ID);
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+if (empty($result)) {
+ECHO "<script>alert('Your approval is pending')
+location.assign('signin.php');
+</script>";    
+
+}     
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
