@@ -107,7 +107,7 @@ foreach ($user as $value) {
 
                     <a href="signin.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Sign in</a>
 
-                    <a href="logout.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Logout</a>
+                    <a href="logout.php" class="nav-item nav-link"><i><img class="mt-2" src="img/log-out.svg" alt=""></i>Logout</a>
 
                 </div>
 
