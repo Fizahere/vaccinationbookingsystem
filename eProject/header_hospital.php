@@ -15,7 +15,7 @@ $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($result)) {
-ECHO "<script>alert('Your approval is pending')
+ECHO "<script>alert('Your approval is pending .Please wait...')
 location.assign('signin.php');
 </script>";    
 
