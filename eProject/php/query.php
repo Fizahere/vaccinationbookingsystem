@@ -8,7 +8,6 @@ include_once("models/auth.php");
 if (isset($_POST['update_admin_info'])) {
     $admin_ID = $_POST['model-admin-ID'];
     $admin_name = $_POST['model-admin-name'];
-<<<<<<< HEAD
     $admin_email= $_POST['modal-admin-email'];
     $admin_password= $_POST['modal-admin-password'];
             $query= $pdo -> prepare("update admins set adminName = :name,adminEmail = :email, adminPassword = :password where adminID = :_id");
@@ -17,61 +16,13 @@ if (isset($_POST['update_admin_info'])) {
             $query -> bindParam('password', $admin_password);
             $query -> bindParam('_id', $admin_ID);
             $query -> execute();
-=======
-    $admin_email = $_POST['modal-admin-email'];
-    $admin_password = $_POST['modal-admin-password'];
-    $admin_image = $_FILES['modal-admin-image']['name'];
-    $admin_image_size = $_FILES['modal-admin-image']['size'];
-    $admin_image_tmp_name = $_FILES['modal-admin-image']['tmp_name'];
-    $admin_image_ext = pathinfo($admin_image, PATHINFO_EXTENSION);
-    $destination = "adminImages/" . $admin_image;
-    if ($admin_image_size <= 48000000) {
-        if ($admin_image_ext === 'jpg' || $admin_image_ext === "png" || $admin_image_ext === 'jpeg' || $admin_image_ext === "webp" || $admin_image_ext === "" || $admin_image === "") {
-            if (move_uploaded_file($admin_image_tmp_name, $destination)) {
-                $query = $pdo->prepare("update admins set adminName = :name,adminEmail = :email, adminPassword = :password, adminImage=:image where adminID = :_id");
-                $query->bindParam('name', $admin_name);
-                $query->bindParam('email', $admin_email);
-                $query->bindParam('password', $admin_password);
-                $query->bindParam('_id', $admin_ID);
-                $query->bindParam('image', $admin_image);
-                $query->execute();
-                echo "<script>
-        location.assign('adminProfile.php')
-        </script>";
-            }
-
-        } else {
-            echo "<script>alert('not valid extension')
-        location.assign('adminProfile.php')
-        </script>";
-        }
-
-    } else {
-        echo "file size is greater";
-    }
-    if ($admin_image_size == 0) {
-        if ($admin_image_ext === '' || $admin_image === "") {
-
-            $query = $pdo->prepare("update admins set adminName = :name,adminEmail = :email, adminPassword = :password where adminID = :_id");
-            $query->bindParam('name', $admin_name);
-            $query->bindParam('email', $admin_email);
-            $query->bindParam('password', $admin_password);
-            $query->bindParam('_id', $admin_ID);
-
-            $query->execute();
->>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5
             echo "<script>
         location.assign('adminProfile.php')
         </script>";
         }
-<<<<<<< HEAD
      
 
 
-=======
-    }
-}
->>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5
 ?>
 
 <!-----------------------------------------------------------------------------------------------
@@ -415,7 +366,7 @@ if (isset($_POST['signin'])) {
         } else {
             redirectWindow('signin.php?error=invalid credentials');
         }
-    }
+    };
 
     if ($_POST['role'] == 'Hospital') {
         $user = $authModel->findUserWithEmailHospital($email, $pdo);
@@ -433,9 +384,9 @@ if (isset($_POST['signin'])) {
             redirectWindow('hospitalData.php');
         } else {
             redirectWindow('signin.php?error=invalid credentials');
-        }
-    }
-}
+        };
+    };
+};
 
 //signup for hospital
 
@@ -535,7 +486,7 @@ if (isset($_POST['delete_vaccine_info'])) {
     redirectWindow('vaccineData.php');
     exit;
 };
-}
+
 ;
 
 if (isset($_POST['edit'])) {
