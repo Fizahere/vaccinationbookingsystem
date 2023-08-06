@@ -68,21 +68,9 @@ if (!isset($_SESSION['Admin'])) {
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
                     <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
                 </a>
-                <?php 
-                        $user = $_SESSION['Admin'];
-                        foreach ($user as $value) {
-                         
-                ?>
+               
                 <div class="d-flex align-items-center ms-4 mb-4">
-                <div class="position-relative">
-                        <img class="rounded-circle" src="adminImages/<?php  $value['adminImage']?>" alt="" style="width: 40px; height: 40px;">
-                        <div
-                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>
+              
                     <div class="ms-3">
                         <?php
                         $user = $_SESSION['Admin'];

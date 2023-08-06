@@ -52,10 +52,7 @@ if (!isset($_SESSION['Parent'])) {
     <input type="text" name="name" value="<?php echo $name?>" class='form-control' >
     </div>
 
-    <div class="form-group w mt-4">
-    <label for="" class='text-dark'>Update Profile Picture</label>
-    <input type="file" name="image" class='form-control'>
-    </div>
+  
 
     <div class="form-group w mt-4">
     <label for="" class='text-dark'>Update Email</label>
