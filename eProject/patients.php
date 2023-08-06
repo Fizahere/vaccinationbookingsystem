@@ -45,11 +45,8 @@ if (!isset($_SESSION['Hospital'])) {
                                     <?php
 
                                     $query = $pdo->prepare("SELECT * FROM children_details where hospitalID = :getHospitalID AND appointmentStatus = 'approved'");
-<<<<<<< HEAD
                                     $query->bindParam('getHospitalID', $hospitalID, );
-=======
                                     $query->bindParam('getHospitalID', $hospitalID,);
->>>>>>> 59c13981cfd453a8e401712c403d5565cb9dd50b
                                     $query->execute();
                                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                                     // print_r($result);   

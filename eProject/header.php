@@ -5,25 +5,27 @@ include('php/query.php');
 
 if (!isset($_SESSION['Parent'])) {
     redirectWindow('signin.php');
-};
+}
+;
 // Check if 'Parent' session variable is set
- 
-    $user = $_SESSION['Parent'];
 
-    foreach($user as  $value){
-      $U_ID =   $value['parentID'];
-$query = $pdo->prepare("SELECT * FROM parent_login WHERE parentID = :parentID AND parentStatus = 'approved'");
-$query->bindParam(':parentID',  $U_ID);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
+$user = $_SESSION['Parent'];
 
-if (empty($result)) {
-    ECHO "<script>alert('Your approval is pending .Please wait...')
+foreach ($user as $value) {
+    $U_ID = $value['parentID'];
+    $query = $pdo->prepare("SELECT * FROM parent_login WHERE parentID = :parentID AND parentStatus = 'approved'");
+    $query->bindParam(':parentID', $U_ID);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    if (empty($result)) {
+        echo "<script>alert('Your approval is pending')
     location.assign('signin.php');
-    </script>";    
+    </script>";
 
-}     
-    };
+    }
+}
+;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,22 +62,17 @@ if (empty($result)) {
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
 
-
-        <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.php" class="navbar-brand mx-4 mb-3">
+<<<<<<< HEAD
                     <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
+=======
+                    <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>Vaccination booking system</h6>
+>>>>>>> 0064da51d7ed45722c05fd76da48fa13c0f3d75c
                 </a>
+
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
@@ -100,27 +97,21 @@ if (empty($result)) {
                         <span>Parent</span>
                     </div>
                 </div>
-                <div class="navbar-nav w-100">
-                    
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Elements</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
-                        </div>
-                    </div>
-                    <a href="form.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                            <a href="signin.php" class="dropdown-item">Sign In</a>
-                            <a href="signup.php" class="dropdown-item">Sign Up</a>
-                            <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
-               
-                        </div>
 
-                       
+                <div class="navbar-nav w-100">
+
+
+                    <a href="ParentPage.php" class="nav-item nav-link "><i class="fa fa-hospital me-2"></i>Home</a>
+
+                    <a href="appointment.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Appointment</a>
+
+                    <a href="signin.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Sign in</a>
+
+                    <a href="logout.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Logout</a>
+
+                </div>
+
+
             </nav>
         </div>
         <!-- Sidebar End -->
@@ -213,7 +204,7 @@ if (empty($result)) {
                             foreach ($user as $value) {
                                 ?>
                                 <span class="d-none d-lg-inline-flex">
-                                    <?php echo ucfirst($value['parentName'])?>
+                                    <?php echo ucfirst($value['parentName']) ?>
                                 </span>
                                 <?php
                             }
