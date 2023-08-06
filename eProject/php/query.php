@@ -534,9 +534,7 @@ if (isset($_POST['delete_vaccine_info'])) {
     echo "<script>alert('Vaccine deleted')</script>";
     redirectWindow('vaccineData.php');
     exit;
-<<<<<<< HEAD
 };
-=======
 }
 ;
 
@@ -582,4 +580,3 @@ if (isset($_POST['edit'])) {
     // echo "<script>alert('hello')</script>";
     // redirectWindow('hospitalData.php');
 }
->>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5
