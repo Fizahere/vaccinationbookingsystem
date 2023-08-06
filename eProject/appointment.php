@@ -16,7 +16,7 @@ if (!isset($_SESSION['Parent'])) {
 
 <body>
     <div class="bg-light rounded h-100 p-4 mt-5">
-        <h6 class="mb-4">Appointment</h6>
+        <h6 class="mb-3">Appointment</h6>
         <?php
 
         $user = $_SESSION['Parent'];
@@ -71,7 +71,7 @@ if (!isset($_SESSION['Parent'])) {
         
         }
         ?>
-        <div class="container p-5 row">
+        <div class="container p-5 row mt-3">
             <div class='col-md-6'>
 
                 <h6>Patient Name</h6>
