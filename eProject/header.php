@@ -19,7 +19,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($result)) {
     ECHO "<script>alert('Your approval is pending')
-    location.assign.window('signin.php');
+    location.assign('signin.php');
     </script>";    
 
 }     
@@ -90,7 +90,7 @@ if (empty($result)) {
                         foreach ($user as $value) {
                             ?>
                             <h6 class="mb-0">
-                                <?php echo $value['parentName'] ?>
+                                <?php echo ucfirst($value['parentName']) ?>
                             </h6>
 
                             <?php
@@ -101,14 +101,8 @@ if (empty($result)) {
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-<<<<<<< HEAD
                     
-                        <input type="text" value="<?php echo($value['parentID']) ?>">
                     <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-=======
-                    <a href="index.php" class="nav-item nav-link active"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
->>>>>>> cbe9b5717ff5cb354ade5b0bb782c9c03ff7dbfb
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>Elements</a>
@@ -120,7 +114,6 @@ if (empty($result)) {
                     </div>
                     <a href="form.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-<<<<<<< HEAD
                             <a href="signin.php" class="dropdown-item">Sign In</a>
                             <a href="signup.php" class="dropdown-item">Sign Up</a>
                             <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
@@ -128,13 +121,6 @@ if (empty($result)) {
                         </div>
 
                        
-=======
-                    <a href="signin.php" class="dropdown-item">Sign In</a>
-                    <a href="signup.php" class="dropdown-item">Sign Up</a>
-                    <a href="logout.php" class="dropdown-item" name='logout'>Logout</a>
-
-                </div>
->>>>>>> cbe9b5717ff5cb354ade5b0bb782c9c03ff7dbfb
             </nav>
         </div>
         <!-- Sidebar End -->
@@ -227,7 +213,7 @@ if (empty($result)) {
                             foreach ($user as $value) {
                                 ?>
                                 <span class="d-none d-lg-inline-flex">
-                                    <?php echo $value['parentName'] ?>
+                                    <?php echo ucfirst($value['parentName'])?>
                                 </span>
                                 <?php
                             }

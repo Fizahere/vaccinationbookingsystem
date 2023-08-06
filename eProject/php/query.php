@@ -310,7 +310,7 @@ if (isset($_POST['signup'])) {
 
     if ($user) {
         $_SESSION['USER'] = $user;
-        redirectWindow('ParentPage.php');
+        redirectWindow('signin.php');
     } else {
         redirectWindow("signup.php?error=Something went wrong");
     }

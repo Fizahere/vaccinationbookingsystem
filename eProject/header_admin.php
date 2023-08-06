@@ -66,7 +66,7 @@ if (!isset($_SESSION['Admin'])) {
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                    <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
 
@@ -75,13 +75,9 @@ if (!isset($_SESSION['Admin'])) {
                         $user = $_SESSION['Admin'];
                         foreach ($user as $value) {
                             ?>
-<<<<<<< HEAD
                             <h6 class="mb-0">
                                 <?php echo $value['adminName'] ?>
                             </h6>
-=======
-                        <h6 class="mb-0"><?php echo  ucfirst( $value ['adminName']) ?></h6>
->>>>>>> 59c13981cfd453a8e401712c403d5565cb9dd50b
                             <?php
                         }
                         ?>
@@ -223,14 +219,6 @@ if (!isset($_SESSION['Admin'])) {
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-<<<<<<< HEAD
-=======
-                        <?php
-                        $user = $_SESSION['Admin'];
-                        foreach($user as $value){
-                            ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo  ucfirst($value ['adminName'] )?></span>
->>>>>>> 59c13981cfd453a8e401712c403d5565cb9dd50b
                             <?php
                             $user = $_SESSION['Admin'];
                             foreach ($user as $value) {
