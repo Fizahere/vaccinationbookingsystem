@@ -11,7 +11,7 @@ if (!isset($_SESSION['Admin'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title> Vaccination Booking System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -76,7 +76,7 @@ if (!isset($_SESSION['Admin'])) {
                         foreach ($user as $value) {
                             ?>
                             <h6 class="mb-0">
-                                <?php echo $value['adminName'] ?>
+                                <?php echo ucfirst($value['adminName'] )?>
                             </h6>
                             <?php
                         }
@@ -219,19 +219,20 @@ if (!isset($_SESSION['Admin'])) {
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                             <?php
                             $user = $_SESSION['Admin'];
                             foreach ($user as $value) {
                                 ?>
                                 <span class="d-none d-lg-inline-flex">
-                                    <?php echo $value['adminName'] ?>
+                                    <?php echo ucfirst($value['adminName']) ?>
                                 </span>
                                 <?php
                             }
                             ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <!-- <a href="#" class="dropdown-item">My Profile</a> -->
+                            <a href="adminProfile.php" class="dropdown-item">My Profile</a>
                             <a href="signin.php" class="dropdown-item">Sign In</a>
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
