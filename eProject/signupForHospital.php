@@ -55,7 +55,7 @@ include('php/query.php')
                             <a href="index.html" class="">
                                 <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
                             </a>
-                            <h3>Sign Up</h3>
+                            <h6>Sign Up</h6>
                         </div>
                         <form action="" method="post">
                             <div class="form-floating mb-3">

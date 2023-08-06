@@ -509,7 +509,7 @@ if (isset($_POST['edit'])) {
                 $query->bindParam('img', $image);
                 $query->bindParam('id', $id);
                 $query->execute();
-                echo '<script>alert("song added")</script>';
+                echo '<script>alert("Profile Updated")</script>';
             } else {
                 echo "<script>alert('error')</script>";
             }
@@ -530,4 +530,17 @@ if (isset($_POST['edit'])) {
 
     // echo "<script>alert('hello')</script>";
     // redirectWindow('hospitalData.php');
+}
+if (isset($_POST['h_edit'])) {
+    $h_name = $_POST['h_name'];
+    $h_email = $_POST['h_email'];
+    $h_id = $_POST['h_id'];
+
+                $query = $pdo->prepare('update hospital_login set hospitalName = :name,
+                hospitalEmail = :email where hospitalID = :id');
+                $query->bindParam('name', $h_name);
+                $query->bindParam('email', $h_email);
+                $query->bindParam('id', $h_id);
+                $query->execute();
+                echo '<script>alert("Profile Updated")</script>';    
 }

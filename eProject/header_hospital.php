@@ -82,6 +82,7 @@ location.assign('signin.php');
                         $user = $_SESSION['Hospital'];
                         foreach ($user as $value) {
                             $hospitalID = $value['hospitalID'];
+                            $hospitalName = $value['hospitalName'];
                             // echo '<script>alert("' . $hospitalID . '")</script>'
                         ?>
                             <?php
@@ -119,49 +120,7 @@ location.assign('signin.php');
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
-                </form>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
-                        </div>
-                    </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
@@ -174,8 +133,8 @@ location.assign('signin.php');
                         INNER JOIN parent_login ON children_details.parentID = parent_login.parentID
                         INNER JOIN vaccine_details ON children_details.vaccineID = vaccine_details.vaccineID
                         INNER JOIN hospital_login ON children_details.hospitalID  = hospital_login.hospitalID
-                         where appointmentStatus = 'approved'");
-                                // $query->bindParam("getHospitalID", $hospitalID);
+                         where appointmentStatus = 'approved' AND hospitalName = :getHospitalName");
+                                $query->bindParam("getHospitalName", $hospitalName);
                                 $query->execute();
                                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                                 // echo '<script>alert("' . $hospitalID . '")</script>';
@@ -184,7 +143,7 @@ location.assign('signin.php');
                             ?>
                                 <a href="#" class="dropdown-item">
                                     <h6 class="fw-normal mb-0"> <?php echo ucfirst($row['childName']) ?> has an appointment of' <?php echo ucfirst($row['vaccineName']) ?>' on <?php echo $row['vaccinationDate'] ?></h6>
-                                    <small>15 minutes ago</small>
+                                    <!-- <small>15 minutes ago</small> -->
                                 </a>
                             <?php
                                 };
@@ -197,15 +156,18 @@ location.assign('signin.php');
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo ucfirst($row['hospitalName']) ?></span>
+                            <?php
+                            // echo '<script>alert("' . $hospitalID . '")</script>';
+                            ?>
                     <?php
                             }
                         }
                     ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <a href="hospitalMyProfile.php" class="dropdown-item">My Profile</a>
+                            <!-- <a href="#" class="dropdown-item">Settings</a> -->
+                            <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>

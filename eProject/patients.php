@@ -38,55 +38,78 @@ if (!isset($_SESSION['Hospital'])) {
                                 foreach ($user as $value) {
                                     $hospitalID = $value['hospitalID'];
                                     // echo '<script>alert("' . $hospitalID . '")</script>'
-                                ?>
+                                    ?>
                                     <div class="col-sm-10">
-                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>" class="form-control">
+                                        <input type="hidden" name="getHospitalID" value="<?php echo $value['hospitalID'] ?>"
+                                            class="form-control">
                                     </div>
                                     <?php
 
                                     $query = $pdo->prepare("SELECT * FROM children_details where hospitalID = :getHospitalID AND appointmentStatus = 'approved'");
                                     $query->bindParam('getHospitalID', $hospitalID, );
-                                    $query->bindParam('getHospitalID', $hospitalID,);
+                                    // $query->bindParam('getHospitalID', $hospitalID, );
                                     $query->execute();
                                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                                     // print_r($result);   
                                     $count = 1;
                                     foreach ($result as $row) {
-                                    ?>
-                                        <tr class="tr-row">
-                                            <th scope="row">
-                                                <?php echo $count ?>
-                                            </th>
-
-                                            <td>
-                                                <?php echo $row['childName'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['childGender'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['childAge'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['vaccineID'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['vaccinationDate'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['parentID'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['contact'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row['appointmentStatus'] ?>
-                                            </td>
-                                        </tr>
-                                <?php
-                                        $count++;
+                                        $vaccineID = $row['vaccineID'];
+                                        $parentID = $row['parentID'];
+                                        //   echo '<script>alert("'.$parentID.'")</script>' ;
+                                
+                                        $query = $pdo->prepare('select * from vaccine_details where vaccineID = :vaccineID');
+                                        $query->bindParam('vaccineID', $vaccineID);
+                                        $query->execute();
+                                        //   echo '<script>alert("'.$vaccineID.'")</script>' 
+                                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($result as $value) {
+                                            //   echo '<script>alert("'.$value['vaccineName'].'")</script>' ;
+                                            $vaccineName = $value['vaccineName'];
+                                        }
                                     }
-                                };
+                                    $query = $pdo->prepare('select * from parent_login where parentID = :p_id');
+                                    $query->bindParam('p_id', $parentID);
+                                    $query->execute();
+                                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($result as $parentValue) {
+                                        $parentName = $parentValue['parentName'];
+                                        //   echo '<script>alert("'.$parentName.'")</script>';
+                                    }
+                                    ?>
+                                    <tr class="tr-row">
+                                        <th scope="row">
+                                            <?php echo $count ?>
+                                        </th>
+
+                                        <td>
+                                            <?php echo $row['childName'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['childGender'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['childAge'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $vaccineName ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['vaccinationDate'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $parentName ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['contact'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $row['appointmentStatus'] ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $count++;
+                                }
+                                ;
 
                                 ?>
                             </tbody>
@@ -116,5 +139,5 @@ if (!isset($_SESSION['Hospital'])) {
     // }
 </script>
 <?php
-include('footer.php')
+include('footer.php');
 ?>

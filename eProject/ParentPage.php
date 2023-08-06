@@ -64,7 +64,7 @@ if (!isset($_SESSION['Parent'])) {
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="birthdate">Enter your birthdate:</label>
+                <label for="birthdate">Enter your age:</label>
                 <input class="form-control" type="number" name="dob" required>
                 <!-- 
                 <input class="form-control" type="date" name="dob" id="birthdate" required>
