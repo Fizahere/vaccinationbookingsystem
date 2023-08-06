@@ -8,6 +8,16 @@ include_once("models/auth.php");
 if (isset($_POST['update_admin_info'])) {
     $admin_ID = $_POST['model-admin-ID'];
     $admin_name = $_POST['model-admin-name'];
+<<<<<<< HEAD
+    $admin_email= $_POST['modal-admin-email'];
+    $admin_password= $_POST['modal-admin-password'];
+            $query= $pdo -> prepare("update admins set adminName = :name,adminEmail = :email, adminPassword = :password where adminID = :_id");
+            $query -> bindParam('name', $admin_name);
+            $query -> bindParam('email', $admin_email);
+            $query -> bindParam('password', $admin_password);
+            $query -> bindParam('_id', $admin_ID);
+            $query -> execute();
+=======
     $admin_email = $_POST['modal-admin-email'];
     $admin_password = $_POST['modal-admin-password'];
     $admin_image = $_FILES['modal-admin-image']['name'];
@@ -49,12 +59,19 @@ if (isset($_POST['update_admin_info'])) {
             $query->bindParam('_id', $admin_ID);
 
             $query->execute();
+>>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5
             echo "<script>
         location.assign('adminProfile.php')
         </script>";
         }
+<<<<<<< HEAD
+     
+
+
+=======
     }
 }
+>>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5
 ?>
 
 <!-----------------------------------------------------------------------------------------------
@@ -75,15 +92,14 @@ if (isset($_POST['update_hospital_info'])) {
     $email = $_POST['model-email'];
     $location = $_POST['model-location'];
     $id = $_POST['model-id'];
-    $query = $pdo->prepare("update hospital_login set hospitalName = :name,
-    hospitalEmail = :email ,hospitalLocation = :location where hospitalID = :_id");
-    $query->bindParam('name', $name);
-    $query->bindParam('email', $email);
-    $query->bindParam('location', $location);
-    $query->bindParam('_id', $id);
-    $query->execute();
-    echo "<script>alert('hospital updated succesfully')</script>";
-    redirectWindow('hospitalData.php');
+    $query= $pdo -> prepare("update hospital_login set hospitalName = :name,hospitalEmail = :email ,hospitalLocation = :location where hospitalID = :_id");
+            $query -> bindParam('name', $name);
+            $query -> bindParam('email', $email);
+            $query -> bindParam('location', $location);
+            $query -> bindParam('_id', $id);
+            $query -> execute();
+            echo "<script>alert('hospital updated succesfully')</script>";
+            header('Location: hospitalData.php');
     exit;
 }
 // ---------------------------------------------------------------------------|
@@ -110,17 +126,16 @@ if (isset($_POST['insert-hospital-btn'])) {
     $hospital_location = $_POST['insert-hospital-location'];
     $hospital_password = $_POST['insert-hospital-password'];
 
-    $query = $pdo->prepare("INSERT into hospital_login(hospitalName,
-    hospitalEmail,hospitalLocation,hospitalPassword) values(:hospital_name,:hospital_email,:hospital_location,:hospital_password)");
-    $query->bindParam('hospital_name', $hospital_name);
-    $query->bindParam('hospital_email', $hospital_email);
-    $query->bindParam('hospital_location', $hospital_location);
-    $query->bindParam('hospital_password', $hospital_password);
-    $query->execute();
+    $query= $pdo -> prepare("INSERT into hospital_login(hospitalName,hospitalEmail,hospitalLocation,hospitalPassword) values(:hospital_name,:hospital_email,:hospital_location,:hospital_password)");
+    $query -> bindParam('hospital_name', $hospital_name);
+    $query -> bindParam('hospital_email', $hospital_email);
+    $query -> bindParam('hospital_location', $hospital_location);
+    $query -> bindParam('hospital_password', $hospital_password);
+    $query -> execute();
 
     echo "<script>alert('hospital added succesfully')</script>";
-    redirectWindow('hospitalData.php');
-    exit;
+                header('Location: hospitalData.php');
+                exit;
 }
 
 
@@ -519,6 +534,9 @@ if (isset($_POST['delete_vaccine_info'])) {
     echo "<script>alert('Vaccine deleted')</script>";
     redirectWindow('vaccineData.php');
     exit;
+<<<<<<< HEAD
+};
+=======
 }
 ;
 
@@ -564,3 +582,4 @@ if (isset($_POST['edit'])) {
     // echo "<script>alert('hello')</script>";
     // redirectWindow('hospitalData.php');
 }
+>>>>>>> 6f2289df1213f136b9de32e701c35f488c68acb5

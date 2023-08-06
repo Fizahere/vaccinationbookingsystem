@@ -68,8 +68,9 @@ if (!isset($_SESSION['Admin'])) {
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
                     <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>VaccinationBookingSystem</h6>
                 </a>
+               
                 <div class="d-flex align-items-center ms-4 mb-4">
-
+              
                     <div class="ms-3">
                         <?php
                         $user = $_SESSION['Admin'];

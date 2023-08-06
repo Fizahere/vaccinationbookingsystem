@@ -93,11 +93,6 @@ if (!isset($_SESSION['Admin'])) {
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-3 mt-3 row form-group">
-                                                            <label for=""  class="col-sm-2 col-form-label">Add Image</label>
-                                                            <div class="col-sm-10">
-                                                            <input type="file" name="modal-admin-image"           class="form-control bg-dark" >
-                                                        </div>
 
 
 
