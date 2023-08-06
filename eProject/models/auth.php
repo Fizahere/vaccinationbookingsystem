@@ -27,7 +27,8 @@ class Auth
         return $result;
     }
 
-    function register($name,$email,$password,$pdo){
+    function register($name, $email, $password, $pdo)
+    {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $query = $pdo->prepare('insert into parent_login (parentName, parentEmail, parentPassword) values(:name, :email, :password)');
         $query->bindParam(':name', $name);
@@ -36,7 +37,8 @@ class Auth
         $query->execute();
     }
 
-    function registerHospital($name,$email,$password,$location,$pdo){
+    function registerHospital($name, $email, $password, $location, $pdo)
+    {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $query = $pdo->prepare('insert into hospital_login (hospitalName, hospitalEmail, hospitalPassword, hospitalLocation) values(:name, :email, :password, :location)');
         $query->bindParam(':name', $name);
@@ -47,43 +49,22 @@ class Auth
         $query->execute();
     }
 
-    function childFormSubmit($childName,$Gender,$dateOfBirth,$hospital,$vaccine,$appointment,$parentID,$phone,$pdo){
+    function childFormSubmit($childName, $Gender, $dateOfBirth, $hospital, $vaccine, $appointment, $parentID, $phone, $pdo)
+    {
         $query = $pdo->prepare('insert into children_details 
     (childName,childGender,childAge,hospitalID,vaccineID,vaccinationDate,parentID,contact)
      values (:name,:gender,:age,:hospital,:vaccine,:date,:parentID,:contact)
     ');
-    $query->bindParam(':name', $childName);
-    $query->bindParam(':gender', $Gender);
-    $query->bindParam(':age', $dateOfBirth);
-    $query->bindParam(':hospital', $hospital);
-    $query->bindParam(':vaccine', $vaccine);
-    $query->bindParam(':date', $appointment);
-    $query->bindParam(':parentID', $parentID);
-    $query->bindParam(':contact', $phone);
-    $query->execute();
+        $query->bindParam(':name', $childName);
+        $query->bindParam(':gender', $Gender);
+        $query->bindParam(':age', $dateOfBirth);
+        $query->bindParam(':hospital', $hospital);
+        $query->bindParam(':vaccine', $vaccine);
+        $query->bindParam(':date', $appointment);
+        $query->bindParam(':parentID', $parentID);
+        $query->bindParam(':contact', $phone);
+        $query->execute();
     }
-
-    //update Hospital login info
-function updateHospitalLoginInfo($name,$email,$location,$id,$pdo){
-    $query = $pdo->prepare("update hospital_login set hospitalName = :name,
-    hospitalEmail = :email ,hospitalLocation = :location where hospitalID = :_id");
-    $query->bindParam('name', $name);
-    $query->bindParam('email', $email);
-    $query->bindParam('location', $location);
-    $query->bindParam('_id', $id);
-    $query->execute();
-}
-//insert hospital from admin panel
-function insertHospitalFromAdmin($hospital_name,$hospital_email,$hospital_location,$hospital_password,$pdo){
-    $query = $pdo->prepare("INSERT into hospital_login(hospitalName,
-    hospitalEmail,hospitalLocation,hospitalPassword) values(:hospital_name,:hospital_email,:hospital_location,:hospital_password)");
-    $query->bindParam('hospital_name', $hospital_name);
-    $query->bindParam('hospital_email', $hospital_email);
-    $query->bindParam('hospital_location', $hospital_location);
-    $query->bindParam('hospital_password', $hospital_password);
-    $query->execute();
-}
-
 }
 
 ?>

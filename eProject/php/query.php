@@ -21,7 +21,13 @@ if (isset($_POST['update_hospital_info'])) {
     $email = $_POST['model-email'];
     $location = $_POST['model-location'];
     $id = $_POST['model-id'];
-    $authModel->updateHospitalLoginInfo($name, $email, $id, $location, $pdo);
+    $query = $pdo->prepare("update hospital_login set hospitalName = :name,
+    hospitalEmail = :email ,hospitalLocation = :location where hospitalID = :_id");
+    $query->bindParam('name', $name);
+    $query->bindParam('email', $email);
+    $query->bindParam('location', $location);
+    $query->bindParam('_id', $id);
+    $query->execute();
     echo "<script>alert('hospital updated succesfully')</script>";
     redirectWindow('hospitalData.php');
     exit;
@@ -50,7 +56,13 @@ if (isset($_POST['insert-hospital-btn'])) {
     $hospital_location = $_POST['insert-hospital-location'];
     $hospital_password = $_POST['insert-hospital-password'];
 
-    $authModel->insertHospitalFromAdmin($hospital_name, $hospital_email, $hospital_location, $hospital_password, $pdo);
+    $query = $pdo->prepare("INSERT into hospital_login(hospitalName,
+    hospitalEmail,hospitalLocation,hospitalPassword) values(:hospital_name,:hospital_email,:hospital_location,:hospital_password)");
+    $query->bindParam('hospital_name', $hospital_name);
+    $query->bindParam('hospital_email', $hospital_email);
+    $query->bindParam('hospital_location', $hospital_location);
+    $query->bindParam('hospital_password', $hospital_password);
+    $query->execute();
 
     echo "<script>alert('hospital added succesfully')</script>";
     redirectWindow('hospitalData.php');
@@ -453,4 +465,13 @@ if (isset($_POST['delete_vaccine_info'])) {
     echo "<script>alert('Vaccine deleted')</script>";
     redirectWindow('vaccineData.php');
     exit;
-};
+}
+;
+
+if (isset($_POST['edit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $image = $_POST['image'];
+
+    $query = $pdo->query;
+}

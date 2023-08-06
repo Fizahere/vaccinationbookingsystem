@@ -101,6 +101,8 @@ foreach ($user as $value) {
 
                     <a href="appointment.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Appointment</a>
 
+                    <a href="myProfile.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>My Profile</a>
+
                     <a href="signin.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Sign in</a>
 
                     <a href="logout.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Logout</a>
