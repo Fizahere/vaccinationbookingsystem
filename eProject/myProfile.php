@@ -35,18 +35,18 @@ if (!isset($_SESSION['Parent'])) {
     foreach($user as $value){
         $p_ID = $value['parentID'];
         $name = $value['parentName'];
-        $email = $value['parentEmail'];
-        $image = $value['image'];
+        $email = $value['parentEmail'];  
+              
 }
 ?>
 
     <div class="container h-100 bg-light rounded">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     <div class="profile p-5">
-        <img src="./img/user.jpg" class="img-fluid" alt="">
+        <img src="img/<?php echo $value['image'] ?>" class="img-fluid" alt="">
     </div>
   
-
+<input type="hidden" name="id" value='<?php echo $p_ID ?>'>
         <div class="form-group w">
     <label for="" class='text-dark'>Update Username</label>
     <input type="text" name="name" value="<?php echo $name?>" class='form-control' >
