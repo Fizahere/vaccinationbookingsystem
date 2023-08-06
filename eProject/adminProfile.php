@@ -64,13 +64,15 @@ if (!isset($_SESSION['Admin'])) {
                                             <div class="modal-body">
                                                 <form method="post" action="" enctype="multipart/form-data">
 
-
+                                                <input value="<?php echo $row['adminID'] ?>"
+                                                                name="model-admin-ID"
+                                                                class="form-control" type="hidden">
                                                    
                                                     <div class="mb-3 row">
                                                         <label class="col-sm-2 col-form-label">Name</label>
                                                         <div class="col-sm-10">
                                                             <input value="<?php echo $row['adminName'] ?>"
-                                                                id="modal-category-name" name="model-name"
+                                                                id="modal-category-name" name="model-admin-name"
                                                                 class="form-control" type="text">
                                                         </div>
                                                     </div>
@@ -78,7 +80,7 @@ if (!isset($_SESSION['Admin'])) {
                                                         <label class="col-sm-2 col-form-label">Email</label>
                                                         <div class="col-sm-10">
                                                             <input value="<?php echo $row['adminEmail'] ?>"
-                                                                id="modal-category-name" name="model-email"
+                                                                 name="modal-admin-email"
                                                                 class="form-control" type="text">
                                                         </div>
                                                     </div>
@@ -86,7 +88,7 @@ if (!isset($_SESSION['Admin'])) {
                                                         <label class="col-sm-2 col-form-label">Password</label>
                                                         <div class="col-sm-10">
                                                             <input value="<?php echo $row['adminPassword'] ?>"
-                                                                id="modal-category-name" name="model-location"
+                                                              name="modal-admin-password"
                                                                 class="form-control" type="text">
                                                         </div>
                                                     </div>
@@ -94,7 +96,7 @@ if (!isset($_SESSION['Admin'])) {
                                                     <div class="mb-3 mt-3 row form-group">
                                                             <label for=""  class="col-sm-2 col-form-label">Add Image</label>
                                                             <div class="col-sm-10">
-                                                            <input type="file" name="model-image"           class="form-control bg-dark" >
+                                                            <input type="file" name="modal-admin-image"           class="form-control bg-dark" >
                                                         </div>
 
 
@@ -102,7 +104,7 @@ if (!isset($_SESSION['Admin'])) {
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-dark text-white"
-                                                            name="update_hospital_info">
+                                                            name="update_admin_info">
                                                             Update</button>
                                                         <button type="button" class="btn btn-danger"
                                                             data-bs-dismiss="modal">Close</button>
