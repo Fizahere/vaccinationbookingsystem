@@ -3,6 +3,10 @@ session_start();
 include_once('models/config.php');
 include_once("models/auth.php");
 ?>
+<!-----------------------------------------------------------------------------------------------
+|   php tag start for queries to update  admin  Information                                      |
+|   [start]                                                                                      |  
+------------------------------------------------------------------------------------------------->
 <?php
 
 if (isset($_POST['update_admin_info'])) {
@@ -19,15 +23,15 @@ if (isset($_POST['update_admin_info'])) {
             echo "<script>
         location.assign('adminProfile.php')
         </script>";
-<<<<<<< HEAD
         };
-=======
-        }
->>>>>>> 9bd07c819533c25e797c1c6a8b53876714adbc24
      
 
 
 ?>
+<!-----------------------------------------------------------------------------------------------
+|   php tag end for queries to update  admin  Information                                       |
+|   [end]                                                                                       |  
+------------------------------------------------------------------------------------------------->
 
 <!-----------------------------------------------------------------------------------------------
 |   php tag start for queries to update delete and add  hospital information  by admin           |
