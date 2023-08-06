@@ -19,7 +19,11 @@ if (isset($_POST['update_admin_info'])) {
             echo "<script>
         location.assign('adminProfile.php')
         </script>";
+<<<<<<< HEAD
         };
+=======
+        }
+>>>>>>> 9bd07c819533c25e797c1c6a8b53876714adbc24
      
 
 
@@ -366,7 +370,7 @@ if (isset($_POST['signin'])) {
         } else {
             redirectWindow('signin.php?error=invalid credentials');
         }
-    }
+    };
 
     if ($_POST['role'] == 'Hospital') {
         $user = $authModel->findUserWithEmailHospital($email, $pdo);
@@ -384,9 +388,9 @@ if (isset($_POST['signin'])) {
             redirectWindow('hospitalData.php');
         } else {
             redirectWindow('signin.php?error=invalid credentials');
-        }
-    }
-}
+        };
+    };
+};
 
 //signup for hospital
 
@@ -486,3 +490,51 @@ if (isset($_POST['delete_vaccine_info'])) {
     redirectWindow('vaccineData.php');
     exit;
 };
+<<<<<<< HEAD
+=======
+
+;
+
+if (isset($_POST['edit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $id = $_POST['id'];
+    $image = $_FILES['image']['name'];
+    $ImgSize = $_FILES['image']['size'];
+    $ImgTmpName = $_FILES['image']['tmp_name'];
+    $ImgExt = pathinfo($image, PATHINFO_EXTENSION);
+    $destinationOfImg = 'img/' . $image;
+
+    if ($ImgSize <= 48000000) {
+        if ($ImgExt == 'jpg' || $ImgExt == 'jpeg') {
+            if (move_uploaded_file($ImgTmpName, $destinationOfImg)) {
+                $query = $pdo->prepare('update parent_login set parentName = :name,
+                parentEmail = :email ,image = :img where parentID = :id');
+                $query->bindParam('name', $name);
+                $query->bindParam('email', $email);
+                $query->bindParam('img', $image);
+                $query->bindParam('id', $id);
+                $query->execute();
+                echo '<script>alert("song added")</script>';
+            } else {
+                echo "<script>alert('error')</script>";
+            }
+        } else {
+            echo "<script>alert('error')</script>";
+        }
+    } else {
+        echo "<script>alert('error')</script>";
+    }
+
+    // $query = $pdo->prepare("update parent_login set parentName = :name,
+    // parentlEmail = :email ,image = :img where parentID = :id");
+    // $query->bindParam('name', $name);
+    // $query->bindParam('email', $email);
+    // $query->bindParam('img', $image);
+    // $query->bindParam('id', $id);
+    // $query->execute();
+
+    // echo "<script>alert('hello')</script>";
+    // redirectWindow('hospitalData.php');
+}
+>>>>>>> 9bd07c819533c25e797c1c6a8b53876714adbc24
