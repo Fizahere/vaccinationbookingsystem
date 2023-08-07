@@ -75,7 +75,7 @@ foreach ($user as $value) {
                     $user = $_SESSION['Parent'];
                         foreach ($user as $value) {
                             ?>
-                        <img class="rounded-circle" src="img/<?php echo $value['image'] ?>" alt="" style="width: 40px; height: 40px;">
+                      <a href="myProfile.php"><img class="rounded-circle" src="img/<?php echo $value['image'] ?>" alt="" style="width: 40px; height: 40px;"></a>
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>

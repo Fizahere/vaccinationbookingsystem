@@ -96,7 +96,7 @@ if (!isset($_SESSION['Parent'])) {
                     foreach ($result as $row) {
                         ?>
                         <h6>
-                            <?php echo $row['childName'] . ', ' . $value['parentName'] ?>
+                            <?php echo $row['childName'] . ' ' . $value['parentName'] ?>
                         </h6>
                         <h6>
                             <?php echo $row['childGender'] ?>
