@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 05:45 PM
+-- Generation Time: Aug 07, 2023 at 01:01 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALUES
-(1, 'admin1', 'admin@gmail.com', 'admin1ps'),
-(2, 'admin2', 'admin2@gmail.com', 'admin2ps');
+(1, 'Fiza', 'fiza@gmail.com', '1234'),
+(2, 'Iqra', 'iqra@gmail.com', '0000'),
+(3, 'Iman', 'iman@gmail.com', '1212');
 
 -- --------------------------------------------------------
 
@@ -59,21 +60,14 @@ CREATE TABLE `children_details` (
   `parentID` int(11) DEFAULT NULL,
   `contact` int(11) NOT NULL,
   `appointmentStatus` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `children_details`
 --
 
 INSERT INTO `children_details` (`childID`, `childName`, `childGender`, `childAge`, `hospitalID`, `vaccineID`, `vaccinationDate`, `parentID`, `contact`, `appointmentStatus`) VALUES
-(1, 'childA', 'female', 14, 2, 5, '2023-07-27', 5, 29383773, 'rejected'),
-(2, 'childB', 'male', 17, 4, 5, '2023-08-11', 8, 9823734, 'rejected'),
-(3, 'childC', 'male', 17, 4, 3, '2023-07-17', 7, 198230, 'rejected'),
-(4, 'childD', 'female', 19, 8, 4, '2023-08-19', 2, 109283, 'rejected'),
-(5, 'childE', 'male', 18, 8, 5, '2023-07-19', 1, 98198298, 'approved'),
-(6, 'childF', 'female', 15, 7, 4, '2023-07-18', 7, 96765, 'approved'),
-(7, 'childG', 'female', 13, 7, 5, '2023-09-14', 6, 97821, 'approved'),
-(8, 'childh', 'female', 19, 2, 6, '2023-07-22', 2, 93223, 'approved');
+(16, 'Aleena', 'female', 12, 20, 1, '2023-11-11', 18, 37867564, 'approved');
 
 -- --------------------------------------------------------
 
@@ -95,13 +89,8 @@ CREATE TABLE `hospital_login` (
 --
 
 INSERT INTO `hospital_login` (`hospitalID`, `hospitalName`, `hospitalEmail`, `hospitalPassword`, `hospitalLocation`, `hospitalStatus`) VALUES
-(1, 'hospitalA', 'hospitala@gmail.com', 'hospitalaps', 'no location', 'rejected'),
-(2, 'hospitalb', 'hospitalb@gmail.com', 'hospitalbps', 'underground', 'approved'),
-(4, 'hospitald', 'hospitald@gmail.xom', 'hospitaldps', 'sky', 'approved'),
-(7, 'hospitalG', 'hospitalG@gmail.com', 'hospitalGps', 'moon', 'approved'),
-(8, 'hospitalH', 'hospitalH@gmail.com', 'hospitalGps', 'star', 'approved'),
-(9, '', '', '', '', 'rejected'),
-(10, 'abc', 'abc@gmail.com', '1234', '---', 'approved');
+(20, 'Indus', 'indus@gmail.com', '$2y$10$GqqDlqCk0uAL1k8dyXEDveb40WM700c3kLV9BGYjc22NEUJxdBj6a', 'Karachi', 'approved'),
+(21, 'Jinah', 'jinah@gmail.com', '$2y$10$1WM.xeR5IA8GZYXTOtYMHuEjYmK9LOkCJ8eQNFOdqvKffsJco8Kl2', 'Karachi', 'pending');
 
 -- --------------------------------------------------------
 
@@ -114,20 +103,18 @@ CREATE TABLE `parent_login` (
   `parentName` varchar(250) NOT NULL,
   `parentEmail` varchar(250) NOT NULL,
   `parentPassword` varchar(250) NOT NULL,
-  `parentStatus` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending'
+  `parentStatus` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `image` varchar(225) DEFAULT 'user.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `parent_login`
 --
 
-INSERT INTO `parent_login` (`parentID`, `parentName`, `parentEmail`, `parentPassword`, `parentStatus`) VALUES
-(1, 'parentA', 'parenta@gmail.com', 'parent1ps', 'approved'),
-(2, 'parent2', 'parent2@gmail.com', 'parent2', 'approved'),
-(5, 'parentC', 'parentC@gmail.com', 'parentCps', 'approved'),
-(6, 'parentD', 'parentD@gmail.com', 'parentDps', 'approved'),
-(7, 'parentJ', 'parentJ@gmail.com', 'parentJps', 'approved'),
-(8, 'parentL', 'parentL@gmail.com', 'parentLps', 'approved');
+INSERT INTO `parent_login` (`parentID`, `parentName`, `parentEmail`, `parentPassword`, `parentStatus`, `image`) VALUES
+(18, 'Fiza', 'fiza@gmail.com', '$2y$10$9glJlspYFmUYxRLU4orlZea.AzrEBrR7RecM8he.igiFnPRN6QGX.', 'approved', 'product-min-01.jpg'),
+(19, 'Iman', 'iman@gmail.com', '$2y$10$oELLP29ICjSVD2klaNvuGOuDa9v57G0fz63WCr/e3ePxZ5tptP7fK', 'pending', 'user.jpg'),
+(20, 'Iqra', 'iqra@gmail.com', '$2y$10$IE94W.2qbx86TA/ZZK5FQuZZLYdtfLSrcdhshrsCEWGtnoP48xDTW', 'pending', 'user.jpg');
 
 -- --------------------------------------------------------
 
@@ -147,12 +134,12 @@ CREATE TABLE `vaccine_details` (
 --
 
 INSERT INTO `vaccine_details` (`vaccineID`, `vaccineName`, `vaccineStock`, `hospitalID`) VALUES
-(1, 'vaccineA', 20, 1),
-(2, 'vaccineB', 22, NULL),
-(3, 'vaccineC', 89, NULL),
-(4, 'vaccineD', 88, 2),
-(5, 'vaccineE', 90, 4),
-(6, 'vaccineF', 100, 1);
+(1, 'Mumps', 20, NULL),
+(2, 'Pneumococcal.\r\n', 22, NULL),
+(3, 'Polio', 89, NULL),
+(4, 'Rotavirus', 88, NULL),
+(5, 'Rubella', 90, NULL),
+(6, 'Tetanus', 100, NULL);
 
 --
 -- Indexes for dumped tables
@@ -206,25 +193,25 @@ ALTER TABLE `vaccine_details`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `children_details`
 --
 ALTER TABLE `children_details`
-  MODIFY `childID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `childID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `hospital_login`
 --
 ALTER TABLE `hospital_login`
-  MODIFY `hospitalID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `hospitalID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `parent_login`
 --
 ALTER TABLE `parent_login`
-  MODIFY `parentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `parentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `vaccine_details`
