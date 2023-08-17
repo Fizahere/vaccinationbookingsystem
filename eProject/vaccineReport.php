@@ -22,14 +22,14 @@ include_once('header_admin.php')
 
                                     <td>Vaccine Name</td>
                                     <td>Vaccine Stock</td>
-                                    <td>Hospital Name </td>
+                                 
                                     
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                        $query = $pdo->query("SELECT * FROM vaccine_details JOIN  hospital_login on  vaccine_details.hospitalID = hospital_login.hospitalID ");
+                        $query = $pdo->query("SELECT * FROM vaccine_details  ");
                         $result = $query->fetchAll(PDO::FETCH_ASSOC);
                
                         foreach($result as $row){
@@ -46,10 +46,7 @@ include_once('header_admin.php')
                                         <?php echo $row['vaccineStock'] ?>
                                     </td>
                                    
-                                    <td>
-                                        <?php echo $row['hospitalName'] ?>
-                                    </td>
-                                    
+                              
                                    
 
                                 </tr>
