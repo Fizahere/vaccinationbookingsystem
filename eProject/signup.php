@@ -76,13 +76,7 @@ include('php/query.php')
                             <p class="text-danger">
                                 <?= isset($_REQUEST['error']) ? $_REQUEST['error'] : "" ?>
                             </p>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>
-                                <a href="">Forgot Password</a>
-                            </div>
+                          
                             <button type="submit" name='signup' class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
                         </form>
                         <p class="text-center mb-0">Already have an Account? <a href="signin.php">Sign In</a></p>
@@ -105,6 +99,7 @@ include('php/query.php')
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
+    <script src="js/app.js"></script>
     <script src="js/main.js"></script>
 </body>
 

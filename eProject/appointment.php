@@ -37,13 +37,18 @@ if (!isset($_SESSION['Parent'])) {
                         </b>
                     </spen>
                     <?php
-                } else {
+                } 
+                else if($child['appointmentStatus'] == 'rejected'){
+                    ?>
+                    <h6 class="h6">We are sorry, your appointment is rejected for some reason.</h6>
+                    <?php
+                }
+                else {
                     ?>
                     <h6 class="h6">your appointment is on pending.</h6>
                     <?php
                 }
-            }
-        }
+          
         ?>
         <?php
         $hospitalID = $child['hospitalID'];
@@ -71,6 +76,17 @@ if (!isset($_SESSION['Parent'])) {
         
         }
         ?>
+          <?php
+                $user = $_SESSION['Parent'];
+                foreach ($user as $value) {
+                    $parentID = $value['parentID'];
+
+                    $query = $pdo->prepare("SELECT * FROM children_details where parentID = :parentID AND appointmentStatus = 'approved'");
+                    $query->bindParam('parentID', $parentID, );
+                    $query->execute();
+                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result as $row) {
+                        ?>
         <div class="container p-5 row mt-3">
             <div class='col-md-6'>
 
@@ -84,17 +100,7 @@ if (!isset($_SESSION['Parent'])) {
             </div>
 
             <div class='col-md-6'>
-                <?php
-                $user = $_SESSION['Parent'];
-                foreach ($user as $value) {
-                    $parentID = $value['parentID'];
-
-                    $query = $pdo->prepare("SELECT * FROM children_details where parentID = :parentID AND appointmentStatus = 'approved'");
-                    $query->bindParam('parentID', $parentID, );
-                    $query->execute();
-                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($result as $row) {
-                        ?>
+              
                         <h6>
                             <?php echo $row['childName'] . ' ' . $value['parentName'] ?>
                         </h6>
@@ -121,7 +127,8 @@ if (!isset($_SESSION['Parent'])) {
                         <?php
                     }
                 }
-                ;
+                ;  }
+            }
 
                 ?>
             </div>
