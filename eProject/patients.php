@@ -74,7 +74,7 @@ if (!isset($_SESSION['Hospital'])) {
                                     foreach ($result as $parentValue) {
                                         $parentName = $parentValue['parentName'];
                                         //   echo '<script>alert("'.$parentName.'")</script>';
-                                    }
+                                 
                                     ?>
                                     <tr class="tr-row">
                                         <th scope="row">
@@ -109,6 +109,7 @@ if (!isset($_SESSION['Hospital'])) {
                                     <?php
                                     $count++;
                                 }
+                            }
                                 ;
 
                                 ?>
